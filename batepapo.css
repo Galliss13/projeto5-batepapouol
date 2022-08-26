@@ -1,0 +1,193 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: aqua;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.layout {
+    width: 375px;
+    height: 667px;
+    position: relative;
+    margin: auto;
+}
+
+.layout-principal {
+    width: 375px;
+    background-color: #E5E5E5;
+    display: flex;
+    flex-direction: column;
+}
+
+/* sidebar */
+
+.sidebar {
+    width: 260px;
+    height: 666px;
+    background-color: #FFFFFF;
+    z-index:1;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.outsidebar {
+    width: 138px;
+    height: 667px;
+    background-color: grey;
+    opacity: 0.5;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.conteudo-sidebar {
+    width: 260px;
+}
+
+.contatos, .visibilidades {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.contato, .visibilidade {
+    width: 100%;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.contato:hover, .visibilidade:hover {
+    background-color: beige;
+}
+
+.contato ion-icon, .visibilidade ion-icon {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+.check {
+    color:#28BB25;
+    width: 9px;
+    height: 7px;
+    position: absolute;
+    right: 10px;
+}
+
+.contato p, .visibilidade p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    margin-top: 5px;
+}
+
+.escolha {
+    width: 100%;
+    height: 84px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+/* layout principal */
+
+.topo {
+    width: 100%;
+    height: 80px;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.topo img {
+    width: 75px;
+    height: 53px;
+}
+
+.topo ion-icon {
+    width: 42px;
+    height: 32px;
+}
+
+.elementos-topo {
+    width: 325px;
+    height: 55px;
+    margin:auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.areaMensagens {
+    width: 100%;
+    height: 507px;
+}
+
+.areaInput {
+    width: 100%;
+    height: 80px;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.areaInput input {
+    height: 80px;
+    width: 320px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    padding-left: 10px;
+    border: none;
+
+}
+
+.icone {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icone ion-icon {
+    width: 26px;
+    height: 26px;
+}
+
+
+.mensagem {
+    width: 100%;
+}
+
+
+.status {
+    background-color: #DCDCDC;
+}
+
+.reservado {
+    background-color: #FFDEDE;
+}
+
+.publico {
+    background-color: #ffffff;
+}
+
+.hidden, .contato-notchosen, .visibilidade-notchosen {
+    display: none;
+}
