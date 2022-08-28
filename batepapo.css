@@ -134,6 +134,29 @@ body {
 .areaMensagens {
     width: 100%;
     height: 507px;
+    overflow-y: scroll;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+
+.mensagem p {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 4px 0;
+    font-weight: 400;
+}
+
+.time {
+    color: #AAAAAA;
+}
+
+.from, .to {
+    font-weight: bold;
 }
 
 .areaInput {
@@ -169,12 +192,6 @@ body {
     width: 26px;
     height: 26px;
 }
-
-
-.mensagem {
-    width: 100%;
-}
-
 
 .status {
     background-color: #DCDCDC;
