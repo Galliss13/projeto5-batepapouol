@@ -6,7 +6,7 @@ function entrarSala(nome) {
     envioNome.then (addName)
     envioNome.catch (repairName)
     function addName(acerto) {
-        console.log(acerto)
+        console.log("Nome aceito")
         mensagem.from = nome
     }
     function repairName(erro) {
@@ -19,23 +19,19 @@ function entrarSala(nome) {
     }
 }
 
-entrarSala(nickname)
-
 //MANTER CONEXÃO AO SERVIDOR
 function manterConexao() {
     const status = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', nickname)
     status.then(statusOK)
     status.catch(statusNOTOK)
     function statusOK(ok) {
-        console.log(ok);
+        console.log("Está conectado");
     }
     function statusNOTOK(notok) {
         console.log("Status code: " + notok.response.status);
     }
 }
 
-setInterval(manterConexao, 5000)
-renderizarMensagens()
 
 //RENDERIZAR MENSAGEM CONTINUAMENTE
 
@@ -77,7 +73,8 @@ function renderizarMensagens() {
                 </div>`
             }
         }
-        
+        let ultimoFilho = document.querySelector(".mensagem:last-child")
+        ultimoFilho.scrollIntoView()
     }
     function NOTrecebido(falha) {
         console.log("Status code: " + falha.response.status);
@@ -109,6 +106,7 @@ function enviarMensagem() {
     }
     function NOTenviado(no){
         console.log(no);
+        window.location.reload()
     }
 }
 
@@ -154,3 +152,38 @@ function visibilidadeSelecionada (selecionado) {
     }
     selecionado.children[1].classList.remove("visibilidade-notchosen")
 }
+
+function adicionarParticipantes() {
+    const contatosPromessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/participants')
+    contatosPromessa.then(chegou)
+    contatosPromessa.catch(ferrou)
+    function chegou(boa){
+        const contatos = document.querySelector(".contatos");
+        contatos.innerHTML = ""
+        contatos.innerHTML = `
+        <div onclick="contatoSelecionado(this)" class="contato Todos">
+            <ion-icon name="people"></ion-icon>
+            <ion-icon class="check contato-notchosen" name="checkmark-circle"></ion-icon>
+            <p>Todos</p>
+        </div>`
+        for(let k = 0; k < boa.data.length; k++) {
+            contatos.innerHTML = contatos.innerHTML + `
+            <div onclick="contatoSelecionado(this)" class="contato ${boa.data[k].name}">
+                <ion-icon name="people"></ion-icon>
+                <ion-icon class="check contato-notchosen" name="checkmark-circle"></ion-icon>
+                <p>${boa.data[k].name}</p>
+            </div>
+            `
+        }
+    }
+    function ferrou(uepa){
+        console.log(uepa);
+    }
+}
+
+
+entrarSala(nickname)
+setInterval(manterConexao, 5000)
+renderizarMensagens()
+adicionarParticipantes()
+setInterval(adicionarParticipantes, 10000)

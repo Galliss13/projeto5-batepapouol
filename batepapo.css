@@ -50,7 +50,15 @@ body {
     width: 260px;
 }
 
-.contatos, .visibilidades {
+.contatos {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.visibilidades {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -62,6 +70,7 @@ body {
     display: flex;
     align-items: center;
     padding-left: 20px;
+    position: relative;
 }
 
 .contato:hover, .visibilidade:hover {
@@ -145,6 +154,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     word-break: break-word;
+    margin-top: 4px;
 }
 
 .mensagem p {
