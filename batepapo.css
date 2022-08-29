@@ -141,14 +141,19 @@ body {
 }
 
 
+.mensagem {
+    display: flex;
+    flex-wrap: wrap;
+    word-break: break-word;
+}
+
 .mensagem p {
     width: 100%;
-    height: 40px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    margin: 4px 0;
     font-weight: 400;
+    margin: 6px 0;
 }
 
 .time {
@@ -169,7 +174,7 @@ body {
 
 }
 
-.areaInput input {
+.input {
     height: 80px;
     width: 320px;
     font-weight: 400;

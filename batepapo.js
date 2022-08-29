@@ -1,5 +1,5 @@
 const mensagem = {from: "", to: "", text:"", time:"", type:"" }
-let nickname = {name: prompt("Digite seu nome:")}
+const nickname = {name: prompt("Digite seu nome:")}
 
 function entrarSala(nome) {
     const envioNome = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', nome)
@@ -22,19 +22,20 @@ function entrarSala(nome) {
 entrarSala(nickname)
 
 //MANTER CONEXÃO AO SERVIDOR
-function manterConexao(nickname) {
+function manterConexao() {
     const status = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', nickname)
     status.then(statusOK)
     status.catch(statusNOTOK)
     function statusOK(ok) {
-        console.log(ok + "Deu certo");
+        console.log(ok);
     }
     function statusNOTOK(notok) {
         console.log("Status code: " + notok.response.status);
     }
 }
 
-setInterval(manterConexao, 1000000)
+setInterval(manterConexao, 5000)
+renderizarMensagens()
 
 //RENDERIZAR MENSAGEM CONTINUAMENTE
 
@@ -45,7 +46,6 @@ function renderizarMensagens() {
     function recebidoOK(correto) {
         const localMensagens = document.querySelector(".areaMensagens")
         localMensagens.innerHTML = ""
-        console.log(correto.data);
         for (let i = 0; i < correto.data.length; i++) {
             if (correto.data[i].type === 'status') {
                 localMensagens.innerHTML = localMensagens.innerHTML + `<div class="mensagem status">
@@ -85,7 +85,39 @@ function renderizarMensagens() {
 }
 
 setInterval(renderizarMensagens, 3000)
+console.log(setInterval(renderizarMensagens, 3000));
 
+//ENVIAR MENSAGENS
+
+function enviarMensagem() {
+    const inputCapturado = document.querySelector('.input')
+    let envio = {
+        from: nickname.name,
+        to: "Todos",
+        text: `${inputCapturado.value}`,
+        type: "message" 
+    }
+    
+    console.log(envio);
+    let envioPromessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', envio)
+    inputCapturado.value = ""
+    envioPromessa.then(OKenviado)
+    envioPromessa.catch(NOTenviado)
+    function OKenviado(yes){
+        console.log(yes);
+        renderizarMensagens()
+    }
+    function NOTenviado(no){
+        console.log(no);
+    }
+}
+
+document.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        const btn = document.querySelector(".icone")
+        btn.click()
+    }
+})
 
 
 // sidebar
